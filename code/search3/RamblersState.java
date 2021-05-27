@@ -1,59 +1,58 @@
+/*
+*	State in a map search
+*	Phil Green 2013 version
+* Heidi Christensen (heidi.christensen@sheffield.ac.uk) 2021 version
+*/
+
 import java.util.*;
 
-public class RamblersState extends SearchState{
+public class RamblersState extends SearchState {
 
-  //city for this state
-  private String city;
+  private Coords coords;
+  private int x;
+  private int y;
 
-  //constructor
-  //A* - has estRemCost now
-  public RamblersState(String cname, int lc, int rc){
-    city=cname;
-    localCost=lc;
-    estRemCost=rc;
-  }
-  //accessors
-  public String getCity(){
-    return city;
+
+  // constructor
+  public RamblersState(int lc, Coords coords) {
+    localCost = lc;
+    this.coords = coords;
+
   }
 
 
   // goalPredicate
   public boolean goalPredicate(Search searcher) {
-    RamblersSearch rsearcher = (RamblersSearch) searcher;
-    String tar=rsearcher.getGoal(); // get target city
-    return (city.compareTo(tar)== 0);
+    RamblersSearch msearcher = (RamblersSearch) searcher;
+    String tar = msearcher.getGoal(); // get target city
+    return ();
   }
 
   // getSuccessors
-  public ArrayList<SearchState> getSuccessors (Search searcher) {
-    MapSearch msearcher = (MapSearch) searcher;
-    Carta map = msearcher.getMap();
-    ArrayList<MapLink> links = map.getLinks(city);
-    ArrayList<SearchState> succs = new ArrayList();
+  public ArrayList<SearchState> getSuccessors(Search searcher) {
+    RamblersSearch msearcher = (RamblersSearch) searcher;
+    TerrainMap map = msearcher.getMap();
+    ArrayList<RamblersState> list =  new ArrayList<RamblersState>();
+      list.add(new RamblersState(0, new Coords(0, 0));
 
-    // loop over the links from my city
-    for (MapLink l: links){
-    	String scity;
-      if (city.compareTo(l.getCity1()) == 0) {
-        scity = l.getCity2();
-      }
-      else {
-        scity = l.getCity1();
-      }
-      succs.add(new MapState(scity,l.getCost(), map.estbetween(scity,msearcher.getGoal())));
-    }
-    return succs;
+
+    ArrayList<SearchState> succs = new ArrayList<SearchState>();
+
+
+      succs.add((SearchState) new RamblersState(l.getCost()));
+
   }
 
   // sameState
+
   public boolean sameState(SearchState s2) {
-    MapState ms2= (MapState) s2;
-    return (city.compareTo(ms2.getCity())==0);
+    RamblersState ms2 = (RamblersState) s2;
+
   }
 
   // toString
-  public String toString () {
-    return ("Map State: "+city);
+  public String toString() {
+    return (");
   }
+
 }

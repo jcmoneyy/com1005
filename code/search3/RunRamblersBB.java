@@ -1,7 +1,6 @@
-public class RunRamblersBB {
-    import java.util.*;
+import java.util.*;
 
-public class RunMapSearch {
+public class RunRamblersBB {
 
   public static void main(String[] arg) {
 
@@ -22,6 +21,4 @@ public class RunMapSearch {
     String res_bb = searcher.runSearch(initState, "branchAndBound");
     System.out.println(res_bb);
   }
-}
-
 }
